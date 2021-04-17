@@ -1,0 +1,12 @@
+button{
+  border: none;
+  outline: none;
+  &:hover,&:focus{
+    border: none;
+    outline: none;
+  }
+}
+.app-container{
+  @apply flex justify-center items-center bg-gray-200;
+  min-height: 100vh;
+}

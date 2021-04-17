@@ -1,0 +1,31 @@
+.color-picker{
+   @apply flex items-center;
+   align-items: stretch;
+   background-color: #fff;
+   // Value element
+   &__value{
+      @apply text-gray-400 font-bold  py-2 pl-4 pr-20;
+   }
+   &__color,&__colors{
+      @apply flex items-center justify-center border-gray-200 cursor-pointer;
+      border-left-width: 1px;
+   }
+   // Color block
+   &__color{
+      &-block{
+         @apply bg-gray-400 w-4 h-4 m-3 ;
+      }
+   }
+   // Colors block
+   &__colors{
+     &-btn{
+        @apply w-4 h-4 m-3 text-center text-gray-400;
+        font-size: 20px;
+        line-height: 1rem;
+        &::before{
+           display: block;
+           margin-top: -5px;
+        }
+     }
+   }
+}
