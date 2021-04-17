@@ -17,7 +17,7 @@ function App() {
       console.log('Color is change')
   }
   return (
-    <div className="container app-container">
+    <div className="app-container">
        <ColorPicker value={value} colors={colors} onChange={colorLog} />
     </div>
   );

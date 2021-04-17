@@ -1,0 +1,45 @@
+.color-rgb-list{
+  @apply py-2 px-5;
+  min-width: 185px;
+  background-color: #fff;
+  box-shadow: 0px 5px 10px 1px #797777;
+  &__container{
+    @apply relative;
+    &::before{
+      content: '';
+      border: 8px solid transparent;
+      border-bottom: 8px solid #fff;
+      position: absolute;
+      top: -24px;
+      right: 31px;
+    }
+  }
+  &__nav{
+    &-item{
+      @apply flex justify-between items-center mb-2;
+      &__name{
+        @apply mr-5;
+      }
+    }
+  }
+  &__btn{
+    @apply py-1 px-2 text-center uppercase;
+    min-width: 72px;
+    transition: all 500ms ease-in-out;
+    &-container{
+      @apply flex justify-end items-center;
+    }
+    &-cancel{
+      @apply bg-gray-200 mr-1;
+      &:hover{
+        @apply bg-gray-100;
+      }
+    }
+    &-submit{
+      @apply bg-green-500 text-white;
+      &:hover{
+        @apply bg-green-400;
+      }
+    }
+  }
+}
