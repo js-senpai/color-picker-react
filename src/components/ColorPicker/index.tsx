@@ -82,7 +82,7 @@ const ColorPicker = ({value = '#000',onChange = ()=>{},colors = [{id: 1,color: '
               </div>
           </div>
           <div className="color-picker__color-rgb-list-container" style={{display: isRGBList?'block':'none'}}>
-              <ColorRGBList cancelRgbChanges={cancelRgbChanges} backgroundHex={hexBG} hexColor={hexColor} toggleBG={toggleRgbBG} toggleRGB={toggleRGB} />
+              <ColorRGBList cancelRgbChanges={cancelRgbChanges} backgroundHex={hexBG} toggleBG={toggleRgbBG} toggleRGB={toggleRGB} />
           </div>
           <div className="color-picker__color-list-container" style={{display: isHEXList?'block':'none'}}>
               <ColorList colors={colors} toggleHEX={toggleHEX}  />
