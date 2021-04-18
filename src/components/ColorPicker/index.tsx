@@ -60,14 +60,14 @@ const ColorPicker = ({value = '#000',onChange = ()=>{},colors = [{id: 1,color: '
             }
         }
     }
+    // Component did mount + did update
     useEffect(()=>{
-        // Component did mount
         document.addEventListener('click', handleClickOutside, false);
-        // Component did umount
+        // Component did unmount
         return () => {
             document.removeEventListener('click', handleClickOutside, false);
         }
-    },[])
+    })
     return(
       <div className="color-picker">
           <div className="color-picker__value">
