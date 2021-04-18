@@ -5,7 +5,7 @@ import './scss/colorPicker.scss'
 import ColorList from "./ColorsList";
 import ColorRGBList from "./ColorRGBList";
 // Color picker component
-const ColorPicker = ({value = '#000',onChange = ()=>{},colors = [{id: 1,color: '#000',name: 'black'}]}) =>{
+const ColorPicker = ({value = '#000',onChange = (color:string)=>{console.log(color)},colors = [{id: 1,color: '#000',name: 'black'}]}) =>{
     const [hexColor,setHexColor] = useState(value);
     const [hexBG,setHexBG] = useState(hexColor);
     const [isHEXList,toggleHEXList] = useState(false)
@@ -30,13 +30,13 @@ const ColorPicker = ({value = '#000',onChange = ()=>{},colors = [{id: 1,color: '
        setHexColor(newColor)
        setHexBG(newColor)
        toggleHEXList(false)
-       onChange()
+       onChange(hexColor)
     }
     // Change rgba color of hex value
     const toggleRGB = (newColor = '#000') => {
         setHexColor(newColor)
         toggleRGBList(false)
-        onChange()
+        onChange(hexColor)
     }
     // Toggle rgb bg
     const toggleRgbBG = (newColor = '#000') => {
