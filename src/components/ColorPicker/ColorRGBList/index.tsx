@@ -5,7 +5,7 @@ import 'rc-slider/assets/index.css';
 import { hexToRgb,rgbToHex } from '../../../helpers/ColorHelper/'
 // Style
 import './scss/colorRgbList.scss'
-const ColorRGBList = ({cancelRgbChanges = () => console.log('cancel changes'),toggleBG = (color: string) => console.log(color),toggleRGB = (color: string) => console.log(color),backgroundHex = '#000'}) => {
+const ColorRGBList = ({cancelRgbChanges = () => console.log('cancel changes'),toggleBG = (color: string) => console.log(color),toggleColor = (type:string,color: string) => console.log(color),backgroundHex = '#000'}) => {
   // Get rgb
   const [rgbColor,setRgbColor] = useState(hexToRgb(backgroundHex))
   // Change color
@@ -32,7 +32,7 @@ const ColorRGBList = ({cancelRgbChanges = () => console.log('cancel changes'),to
               </ul>
               <div className="color-rgb-list__btn-container">
                   <button className="color-rgb-list__btn color-rgb-list__btn-cancel" onClick={() => cancelRgbChanges()}>Cancel</button>
-                  <button className="color-rgb-list__btn color-rgb-list__btn-submit" onClick={() => toggleRGB(rgbToHex(rgbColor[0],rgbColor[1],rgbColor[2]))}>Ok</button>
+                  <button className="color-rgb-list__btn color-rgb-list__btn-submit" onClick={() => toggleColor('rgb',rgbToHex(rgbColor[0],rgbColor[1],rgbColor[2]))}>Ok</button>
               </div>
           </div>
       </div>
@@ -41,7 +41,7 @@ const ColorRGBList = ({cancelRgbChanges = () => console.log('cancel changes'),to
 ColorRGBList.propTypes = {
     cancelRgbChanges: PropTypes.func,
     toggleBG: PropTypes.func,
-    toggleRGB: PropTypes.func,
+    toggleColor: PropTypes.func,
     backgroundHex: (propValue: any) =>{
         if(!/^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/g.test(propValue['backgroundHex'])){
             return new Error('Prop "value" must be in hex format. Example: #fff')

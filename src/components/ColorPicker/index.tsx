@@ -10,33 +10,43 @@ const ColorPicker = ({value = '#000',onChange = (color:string)=>{console.log(col
     const [hexBG,setHexBG] = useState(hexColor);
     const [isHEXList,toggleHEXList] = useState(false)
     const [isRGBList,toggleRGBList] = useState(false)
-    // Toggle hex block
-    const toggleHexBlock = () =>{
-        if(isRGBList) {
-            toggleRGBList(false)
+    // Toggle block
+    const toggleBlock = (type = '') => {
+        switch (type){
+            case 'hex':
+                if(isRGBList) {
+                    toggleRGBList(false)
+                }
+                setHexBG(hexColor)
+                toggleHEXList(!isHEXList)
+                break
+            case 'rgb':
+                if(isHEXList){
+                    toggleHEXList(false)
+                }
+                toggleRGBList(!isRGBList)
+                break
+            default:
+                throw Error('Please, set a block name to prop')
         }
-        setHexBG(hexColor)
-        toggleHEXList(!isHEXList)
     }
-    // Toggle hex block
-    const toggleRgbBlock = () =>{
-        if(isHEXList){
-            toggleHEXList(false)
+    // Toggle color
+    const toggleColor = (type = '',newColor = '#000') => {
+        switch (type) {
+            case 'hex':
+                setHexColor(newColor)
+                setHexBG(newColor)
+                toggleHEXList(false)
+                onChange(hexColor)
+                break
+            case 'rgb':
+                setHexColor(newColor)
+                toggleRGBList(false)
+                onChange(hexColor)
+                break
+            default:
+                throw Error('Please, set a type to prop')
         }
-        toggleRGBList(!isRGBList)
-    }
-    // Set new HEX color
-    const toggleHEX = (newColor = '#000') => {
-       setHexColor(newColor)
-       setHexBG(newColor)
-       toggleHEXList(false)
-       onChange(hexColor)
-    }
-    // Change rgba color of hex value
-    const toggleRGB = (newColor = '#000') => {
-        setHexColor(newColor)
-        toggleRGBList(false)
-        onChange(hexColor)
     }
     // Toggle rgb bg
     const toggleRgbBG = (newColor = '#000') => {
@@ -74,18 +84,18 @@ const ColorPicker = ({value = '#000',onChange = (color:string)=>{console.log(col
               { hexColor }
           </div>
           <div className="color-picker__btn-container">
-              <div className="color-picker__color" onClick={() => toggleRgbBlock()}>
+              <div className="color-picker__color" onClick={() => toggleBlock('hex')}>
                   <button className="color-picker__color-block" style={{backgroundColor:hexBG}} />
               </div>
-              <div className="color-picker__colors" onClick={() => toggleHexBlock()}>
+              <div className="color-picker__colors" onClick={() => toggleBlock('rgb')}>
                   <button className="color-picker__colors-btn fas fa-sort-down" />
               </div>
           </div>
           <div className="color-picker__color-rgb-list-container" style={{display: isRGBList?'block':'none'}}>
-              <ColorRGBList cancelRgbChanges={cancelRgbChanges} backgroundHex={hexBG} toggleBG={toggleRgbBG} toggleRGB={toggleRGB} />
+              <ColorRGBList cancelRgbChanges={cancelRgbChanges} backgroundHex={hexBG} toggleBG={toggleRgbBG} toggleColor={toggleColor} />
           </div>
           <div className="color-picker__color-list-container" style={{display: isHEXList?'block':'none'}}>
-              <ColorList colors={colors} toggleHEX={toggleHEX}  />
+              <ColorList colors={colors} toggleColor={toggleColor}  />
           </div>
       </div>
   )
